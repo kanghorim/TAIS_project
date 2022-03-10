@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/notification_view.css' %}">
+<div class="fh5co-blog-style-1">
+    <div class="container">
+        <section>
+            <h1>TAIS</h1>
+            <table>
+              <colgroup>
+                <col width="80%">
+                <col width="10%">
+                <col width="10%">  
+              </colgroup>
+              <tr>
+                <th colspan="3">제목</th>
+              </tr>
+              <tr>
+                <td colspan="3"><strong>홈페이지 오픈준비중입니다.</strong></td>
+              </tr>
+              <tr>
+                <td>TAIS 운영자</td>
+                <td>조회수</td>
+                <td>112</td>
+              </tr>
+              <tr>
+                <td colspan="3" class="article">
+                  서버 내 문제가 생겨 잠시 연기하겠습니다.
+                  <br>
+                  불편을 드려 대단히 죄송합니다.
+                </td>
+              </tr>
+            </table>
+            <a href=""><div class="list">목록</div></a>
+          </section>
+    </div>
+</div>
+{% endblock %}

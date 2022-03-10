@@ -1,0 +1,296 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<script>
+    function searchBtn(){
+      if ($("#searchword").val().length <= 1){
+        alert('검색어를 입력하셔야 검색이 가능합니다.(2자 이상)') ;
+        return false ;
+      }else{
+        $("#search").submit()
+      }
+    }
+  </script>
+<span style="font-size:30px;cursor:pointer " onclick="openNav()">&#9776; open</span>
+<div class="fh5co-blog-style-1">
+    <div class="container" style="margin-top: -50px ; ">
+        <div class="text-center">
+            <h2 class="fh5co-heading wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">차트
+            </h2>
+        </div>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="{% url 'tai:tai'%}">전체</a>
+            <a href="{% url 'tai:tai2'%}">차트2</a>
+            <a href="{% url 'tai:tai3'%}">차트3</a>
+            <a href="{% url 'tai:tai4'%}">차트4</a>
+        </div>
+
+        <div style="border: 1px solid black; width: 100%; height: 1200px; margin-bottom: 20px; margin-top: -70px; margin-top: 20px;">
+            <div id="grape" style=" height: 350px; width: 45%; float: left; margin-left: 20px; margin-top: 20px; position: relative;" >
+                차트데이터1
+                    <canvas id="myChart"  >
+                    </canvas>
+            </div>
+            <div id="grape" style=" height: 350px; width: 45%; float: left; margin-left: 20px; margin-top: 20px; position: relative;">
+                차트데이터2
+                <canvas id="myChart2"  >
+                </canvas>
+            </div>
+            <div id="grape" style=" height: 350px; width: 45%; float: left; margin-left: 20px; margin-top: 20px; position: relative;">
+                차트데이터3
+                <canvas id="myChart3"  >
+                </canvas>
+            </div>
+            <div id="grape" style=" height: 350px; width: 45%; float: left; margin-left: 20px; margin-top: 20px; position: relative;">
+                차트데이터4
+                <canvas id="myChart4"  >
+                </canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("mySidenav").style.marginTop = "100px";
+    }
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+    function divopen(){
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("mySidenav").style.marginTop = "100px";
+    }
+
+
+
+    $(function () {
+            $.ajax({
+                url: "{% static 'data2.json'%}",
+                type: "get",
+                data: {},
+                dataType: "json",
+                success: function (data) {
+                    chartLabels = [];
+                    chartData = [];
+                    alert(data)
+                    var i = 0
+                    $.each(data,function(key,value){
+                        chartLabels.push(data[i][0]); //[2015,2016,2017,2018,2019,2020,2021]
+                        chartData.push(data[i++][1]); //[1300,...]
+                    });
+                    shapeChartDate = {
+                        labels: chartLabels,
+                        datasets: [{
+                            label: '월별 그래프',
+                            data: chartData,
+                            backgroundColor: [
+                                'rgba(255, 99, 1, 0.2)',
+                                'rgba(153, 102, 255, 0.32, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 1922)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    }
+                    createChart();
+                },
+                error: function () {
+                }
+            });
+            $.ajax({
+                url: "{% static 'data2.json'%}",
+                type: "get",
+                data: {},
+                dataType: "json",
+                success: function (data) {
+                    chartLabels = [];
+                    chartData = [];
+                    var i = 0
+                    $.each(data,function(key,value){
+                        chartLabels.push(data[i][0]); //[2015,2016,2017,2018,2019,2020,2021]
+                        chartData.push(data[i++][1]); //[1300,...]
+                    });
+                    shapeChartDate = {
+                        labels: chartLabels,
+                        datasets: [{
+                            label: '지역 그래프',
+                            data: chartData,
+                            backgroundColor: [
+                                'rgba(255, 99, 1, 0.2)',
+                                'rgba(153, 102, 255, 0.32, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 1922)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    }
+                    createChart2();
+                },
+                error: function () {
+                }
+            });
+            $.ajax({
+                url: "{% static 'data3.json'%}",
+                type: "get",
+                data: {},
+                dataType: "json",
+                success: function (data) {
+                    chartLabels = [];
+                    chartData = [];
+                    $.each(data,function(key,value){
+                        chartLabels.push(value.weath_info);
+                        chartData.push(value.dcount);
+                    });
+                    shapeChartDate = {
+                        labels: chartLabels,
+                        datasets: [{
+                            label: '날씨 그래프',
+                            data: chartData,
+                            backgroundColor: [
+                                'rgba(255, 99, 1, 0.2)',
+                                'rgba(153, 102, 255, 0.32, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 1922)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    }
+                    createChart3();
+                },
+                error: function () {
+                }
+            });
+            $.ajax({
+                url: "{% static 'data4.json'%}",
+                type: "get",
+                data: {},
+                dataType: "json",
+                success: function (data) {
+                    chartLabels = [];
+                    chartData = [];
+                    $.each(data,function(key,value){
+                        chartLabels.push(value.occur_road_name_yn);
+                        chartData.push(value.dcount);
+                    });
+                    shapeChartDate = {
+                        labels: chartLabels,
+                        datasets: [{
+                            label: '도로별 그래프',
+                            data: chartData,
+                            backgroundColor: [
+                                'rgba(255, 99, 1, 0.2)',
+                                'rgba(153, 102, 255, 0.32, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 1922)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    }
+                    createChart4();
+                },
+                error: function () {
+                }
+            });
+        
+    });
+    //차트 그리기
+    function createChart() {
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: shapeChartDate,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+    function createChart2() {
+        const ctx = document.getElementById('myChart2').getContext('2d');
+        const myChart2 = new Chart(ctx, {
+            type: 'pie',
+            data: shapeChartDate,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+    function createChart3() {
+        const ctx = document.getElementById('myChart3').getContext('2d');
+        const myChart3 = new Chart(ctx, {
+            type: 'bar',
+            data: shapeChartDate,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+    function createChart4() {
+        const ctx = document.getElementById('myChart4').getContext('2d');
+        const myChart4 = new Chart(ctx, {
+            type: 'bar',
+            data: shapeChartDate,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+</script>
+{% endblock %}

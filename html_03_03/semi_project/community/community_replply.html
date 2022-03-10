@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Voltage &mdash; 100% Free Fully Responsive HTML5 Template by FREEHTML5.co</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
+	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+	<meta name="author" content="FREEHTML5.CO" />
+
+  	<!-- 
+	//////////////////////////////////////////////////////
+
+	FREE HTML5 TEMPLATE 
+	DESIGNED & DEVELOPED by FREEHTML5.CO
+		
+	Website: 		http://freehtml5.co/
+	Email: 			info@freehtml5.co
+	Twitter: 		http://twitter.com/fh5co
+	Facebook: 		https://www.facebook.com/fh5co
+
+	//////////////////////////////////////////////////////
+	-->
+
+  	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="favicon.ico">
+	
+	<!-- Google Fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Monsterrat:400,700|Merriweather:400,300italic,700' rel='stylesheet' type='text/css'>
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="../css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="../css/icomoon.css">
+	<!-- Magnific Popup-->
+	<link rel="stylesheet" href="../css/magnific-popup.css">
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="../css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../css/owl.theme.default.min.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="../css/bootstrap.css">
+	
+	<!-- Cards -->
+	<link rel="stylesheet" href="../css/cards.css">
+
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script> 
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/community_style.css">
+  <link rel="stylesheet" href="../css/write.css">
+  <script>
+
+  </script>
+</head>
+<body>
+
+<div id="fh5co-page" class="community_logo">
+  <nav class="fh5co-community-style-1" role="navigation" data-offcanvass-position="fh5co-offcanvass-left" style="background-image: url(../images/full_2.jpg);">
+    <div class="container">
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 fh5co-logo">
+        <a href="#" class="js-fh5co-mobile-toggle fh5co-nav-toggle"><i></i></a>
+        <a href="index.html">이한솔팀</a>
+      </div>
+      <div class="col-lg-6 col-md-5 col-sm-5 text-center fh5co-link-wrap">
+        <ul data-offcanvass="yes" class = "main1">
+          <li class="active"><a href="#">차트</a></li>
+          <li class="active"><a href="index.html">새소식</a>
+            <ul class = "main2">
+              <li><a href="news.html">뉴스</a></li>
+              <li><a href="notification.html">공지사항</a></li>
+            </ul>
+          </li>
+          <li class="active"><a href="community.html">커뮤니티</a></li>
+          <li class="active"><a href="#">이벤트?</a></li>
+        </ul>
+      </div> 
+      <div class="col-lg-3 col-md-4 col-sm-4 text-right fh5co-link-wrap">
+        <ul class="fh5co-special" data-offcanvass="yes">
+          <li><a href="#">회원가입</a></li>
+          <li><a href="login.html" class="call-to-action">로그인</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<section>
+  <h1>게시글수정</h1>
+  <hr>
+
+  <form action="reply.do" name="reply" method="post">
+    <table>
+    <input type="hidden" name="bId" value="test">
+    <input type="hidden" name="bGroup" value="test">
+    <input type="hidden" name="bStep" value="test">
+    <input type="hidden" name="bIndent" value="test">
+      <colgroup>
+        <col width="15%">
+        <col width="85%">
+      </colgroup>
+      <tr>
+        <th>작성자</th>
+        <td>
+          <input type="text" name="bName">
+        </td>
+      </tr>
+      <tr>
+        <th>제목</th>
+        <td>
+          <input type="text" name="bTitle" value="<답변> test">
+        </td>
+      </tr>
+      <tr>
+        <th>내용</th>
+        <td>
+<textarea name="bContent" cols="50" rows="10">
+
+---------------------------
+[답글]
+test
+</textarea>
+        </td>
+      </tr>
+      <tr>
+        <th>이미지 표시</th>
+        <td>
+          <input type="file" name="file" id="file">
+        </td>
+      </tr>
+    </table>
+    <hr>
+    <div class="button-wrapper">
+      <button type="submit" class="write">답변완료</button>
+      <button type="button" class="cancel" onclick="javascript:location.href='list.do'">취소</button>
+    </div>
+  </form>
+
+</section>
+
+
+
+
+</body>
+</html>

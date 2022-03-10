@@ -1,0 +1,44 @@
+.new_page_div{
+    width: 80%;
+    height: 1600px;
+    margin: 0 auto;
+}
+.new_page_icon{
+    height : 40px;
+    margin-bottom : 3px;
+}
+.new_page_title{
+    text-align: center;
+    font-size : 30px;
+    line-height : 30px;
+    font-weight:bold;
+    color:black;
+    height : 50px
+    
+}
+.new_page_day{
+    text-align: right;
+    height: 25px;
+    font-size : 17px;
+    padding : 0px 0px 4px;
+}
+.new_page_reporter{
+    height : 50px;
+    font-size : 14px;
+    padding : 5px 0px 4px;
+    margin-bottom : 10px;
+    text-align: right;
+    border-bottom: 2px solid silver;
+}
+.new_page_good_icon{
+    height:43px;
+    padding : 0px 0px 0px;
+
+}
+.new_page_photo{
+    width: 100%;
+    height: auto;
+    margin-left: 150px;
+    margin-top: 50px;
+    margin-bottom: 50px;		
+}

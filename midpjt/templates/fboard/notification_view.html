@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/notification_view.css' %}">
+<div class="fh5co-blog-style-1">
+    <div class="container">
+        <section>
+            <h1>TAIS</h1>
+            <table>
+              <colgroup>
+                <col width="80%">
+                <col width="10%">
+                <col width="10%">  
+              </colgroup>
+              <tr>
+                <th colspan="3">제목</th>
+              </tr>
+              <tr>
+                <td colspan="3"><strong>게시판 글제목이 들어갑니다.</strong></td>
+              </tr>
+              <tr>
+                <td>작성자가 들어갑니다.</td>
+                <td>조회수</td>
+                <td>111</td>
+              </tr>
+              <tr>
+                <td colspan="3" class="article">글 내용이 들어갑니다.</td>
+              </tr>
+            </table>
+            <a href=""><div class="list">목록</div></a>
+          </section>
+    </div>
+</div>
+{% endblock %}

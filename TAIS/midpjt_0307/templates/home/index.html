@@ -1,0 +1,326 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<script>
+    window.addEventListener("load", function () {
+        var MOVEING_PX = 4,
+          AUTO_TIME = 2000,
+          slide = document.getElementById("slide"),
+          indi = document.createElement("ul"),
+          slideCnt = slide.getElementsByClassName("cnt"),
+          slideCntItem = slideCnt[0].getElementsByTagName("li"),
+          prevBtn = slide.getElementsByClassName("prev"),
+          nextBtn = slide.getElementsByClassName("next"),
+          playBtn = slide.getElementsByClassName("play"),
+          stopBtn = slide.getElementsByClassName("stop"),
+          playSet = null,
+          before = 0,
+          after = 0,
+          moveIng = false;
+      
+        // init
+        slideCntItem[0].style.left = 0;
+        playBtn[0].style.display = "block";
+        var indi = document.createElement("ul");
+        for (var i = 0; i < slideCntItem.length; i++) {
+          indi.innerHTML += "<li></li>";
+        }
+        indi.classList.add("indi");
+        indi.children[0].classList.add("on");
+        slide.append(indi);
+      
+        for (var j = 0; j < indi.children.length; j++) {
+          indiClick(j);
+        }
+      
+        // initEvnet
+        nextBtn[0].addEventListener("click", function (e) {
+          if (!moveIng) {
+            after++;
+            if (after >= slideCntItem.length) {
+              after = 0;
+            }
+            move(after, before, "next");
+            before = after;
+          }
+        });
+      
+        prevBtn[0].addEventListener("click", function (e) {
+          if (!moveIng) {
+            after--;
+            if (after < 0) {
+              after = slideCntItem.length - 1;
+            }
+            move(after, before);
+            before = after;
+          }
+        });
+      
+        playBtn[0].addEventListener("click", function () {
+          playBtn[0].style.display = "none";
+          stopBtn[0].style.display = "block";
+          playSet = setInterval(function () {
+            if (!moveIng) {
+              after++;
+              if (after >= slideCntItem.length) {
+                after = 0;
+              }
+              move(after, before, "next");
+              before = after;
+            }
+          }, AUTO_TIME);
+        });
+      
+        stopBtn[0].addEventListener("click", function () {
+          playBtn[0].style.display = "block";
+          stopBtn[0].style.display = "none";
+          clearInterval(playSet);
+        });
+      
+        function indiClick(target) {
+          indi.children[target].addEventListener("click", function () {
+            if (!moveIng) {
+              after = target;
+              if (after > before) {
+                move(after, before, "next");
+              } else if (after < before) {
+                move(after, before);
+              }
+              before = after;
+            }
+          });
+        }
+      
+        function move(after, before, type) {
+          var nextX = type === "next" ? slide.offsetWidth : slide.offsetWidth * -1,
+            prevX = 0,
+            set = null;
+          set = setInterval(function () {
+            moveIng = true;
+            if (type === "next") {
+              nextX -= MOVEING_PX;
+              slideCntItem[after].style.left = nextX + "px";
+              if (nextX <= 0) {
+                clearInterval(set);
+                nextX = slide.offsetWidth;
+                moveIng = false;
+              }
+              prevX -= MOVEING_PX;
+            } else {
+              nextX += MOVEING_PX;
+              slideCntItem[after].style.left = nextX + "px";
+              if (nextX >= 0) {
+                clearInterval(set);
+                nextX = slide.offsetWidth * -1;
+                moveIng = false;
+              }
+              prevX += MOVEING_PX;
+            }
+            slideCntItem[before].style.left = prevX + "px";
+          });
+          indi.children[before].classList.remove("on");
+          indi.children[after].classList.add("on");
+        }
+      });
+</script>
+<style>
+        #slide {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        z-index: 11;
+        }
+          
+          #slide .cnt > li {
+            position: absolute;
+            top: 0;
+            left: 100%;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-size: 50px;
+            line-height: 100%;
+            z-index: 11;
+          }
+          
+          #slide .cnt > li:nth-child(1) { 
+          }
+          
+          #slide .cnt > li:nth-child(2) {
+          }
+          
+          #slide .cnt > li:nth-child(3) {
+          }
+          
+          #slide .cnt > li:nth-child(4) {
+          }
+          
+          #slide .btn > button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 0;
+            padding: 5px;
+            background-color: #fff;
+          }
+          
+          #slide .btn .prev {
+            left: -110px;
+            top: 280px;
+            position: relative;
+            z-index: 11;
+          }
+          
+          #slide .btn .next {
+            left: 800px;
+            position: relative;
+            z-index: 11;
+            top: 283px;
+          }
+          
+          #slide .auto > button {
+            display: none;
+            position: absolute;
+            top: 480px;
+            left: 500px;
+            border: 0;
+            padding: 5px;
+           
+          }
+          
+          #slide .indi {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+          
+          #slide .indi:after {
+            content: "";
+            display: block;
+            clear: both;
+          }
+          
+          #slide .indi > li {
+            float: left;
+            margin-left: 5px;
+            border-radius: 50%;
+            width: 12px;
+            height: 12px;
+            cursor: pointer;
+            opacity: 0.5;
+            
+          }
+          
+          #slide .indi > li.on {
+            opacity: 1;
+          }
+          
+          #slide .indi > li:first-child {
+            margin-left: 0;
+          }
+</style>
+<div class="fh5co-blog-style-1">
+   <div class="container">
+      <!-- 이미지 배너 메뉴 -->
+      <div id="news_wrap">
+         <div id="news_style">
+            <div id="slide" style="width:100%; position:relative; height: 100%; background-repeat: no-repeat; overflow:hidden;">
+               <ul class="cnt" style="transition-duration:0.3s;">
+                  <li>
+					        <a href="http://www.cartvnews.com/news/articleView.html?idxno=612059" target="_blank"><img src="{% static 'images/newsbigimg1.png' %}"></a>
+				          </li>
+                  <li>
+					          <a href="http://www.cartvnews.com/news/articleView.html?idxno=612013" target="_blank"><img src="{% static 'images/newsbigimg2.jpeg' %}"></a>
+				          </li>
+                  <li><a href="http://www.cartvnews.com/news/articleView.html?idxno=612005" target="_blank"><img src="{% static 'images/newsbigimg3.jpeg' %}"></a></li>
+                  <li><a href="http://www.cartvnews.com/news/articleView.html?idxno=612004" target="_blank"><img src="{% static 'images/newsbigimg4.jpeg' %}"></a></li>
+               </ul>
+               <div class="btn">
+                  <button type="button" class="prev">
+					          {% comment %} <img src="{% static 'images/prev_arrow_icon.png' %}"> {% endcomment %}
+				          </button>
+                  <button type="button" class="next">
+					          {% comment %} <img src="{% static 'images/next_arrow_icon.png' %}"> {% endcomment %}
+				          </button>
+               </div>
+               <div class="auto">
+                  <button type="button" class="stop" style="position:relative; z-index: 12;">
+					          <img src="{% static 'images/stopicon.png' %}">
+				          </button>
+                  <button type="button" class="play" style="position:relative; z-index: 12;">
+					          <img src="{% static 'images/play_icon.png' %}">
+				          </button>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- 카드뉴스 -->
+      <div class="row p-b">
+         <div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12">
+            <div class="fh5co-post wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1.1s">
+               <div class="fh5co-post-image">
+                  <div class="fh5co-overlay"></div>
+                  {% comment %} <div class="fh5co-category"><a href="#">Tutorial</a></div> {% endcomment %}
+                  <img src="{% static 'images/news_image3.jpeg' %}" alt="Image" class="img-responsive">
+               </div>
+               <div class="fh5co-post-text">
+                  <h3><a href="https://news.naver.com/main/read.naver?mode=LS2D&mid=shm&sid1=103&sid2=240&oid=421&aid=0005953937" target="_blank">국토부, 'KTX 궤도이탈 사고' 재발방지 및 신속대응책 수립</a></h3>
+                  <p>국토교통부는 올 1월 발생한 KTX-산천 궤도이탈 사고와 같은 고속열차 사고 재발방지와 사고 발생 시 신속대응할 수 있도록 '고속열차 안전관리 및 신속대응 방안'을 수립했다. 
+                     </p>
+               </div>
+               <div class="fh5co-post-meta">
+                  <a href="#"><i class="icon-chat"></i> 33</a>
+                  <a href="#"><i class="icon-clock2"></i> 2 hours ago</a>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12">
+            <div class="fh5co-post wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1.1s">
+               <div class="fh5co-post-image">
+                  <div class="fh5co-overlay"></div>
+                  {% comment %} <div class="fh5co-category"><a href="#">Tutorial</a></div> {% endcomment %}
+                  <img src="{% static 'images/news_image2.jpeg' %}" alt="Image" class="img-responsive">
+               </div>
+               <div class="fh5co-post-text">
+                  <h3><a href="https://news.naver.com/main/read.naver?mode=LS2D&mid=shm&sid1=103&sid2=240&oid=421&aid=0005953937" target="_blank">광역철도 행정협, 수도권내륙선 조기착공 타당성조사 국토부에 촉구</a></h3>
+                  <p> 송기섭 충북 진천군수가 회장인 수도권내륙선 광역철도 행정협의회가 7일 공동건의문을 채택했다.</p>
+               </div>
+               <div class="fh5co-post-meta">
+                  <a href="#"><i class="icon-chat"></i> 33</a>
+                  <a href="#"><i class="icon-clock2"></i> 2 hours ago</a>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12">
+            <div class="fh5co-post wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1.1s">
+               <div class="fh5co-post-image">
+                  <div class="fh5co-overlay"></div>
+                  {% comment %} <div class="fh5co-category"><a href="#">Tutorial</a></div> {% endcomment %}
+                  <img src="{% static 'images/news_image1.jpeg' %}" alt="Image" class="img-responsive">
+               </div>
+               <div class="fh5co-post-text">
+                  <h3><a href="https://news.naver.com/main/read.naver?mode=LS2D&mid=shm&sid1=103&sid2=240&oid=421&aid=0005954452" target="_blank">울산 동구, 기업·경찰 협조 '학문로 대형차량 통행' 민원 개선</a></h3>
+                  <p>
+					울산 동구는 '학문로~고늘사거리' 구간의 대형화물차 운행 집중에 따른 주민 불편사항을 지역 기업체 및 경찰과의 유기적인 협조를 통해 원만히 해결했다고 7일 밝혔다.</p>
+               </div>
+               <div class="fh5co-post-meta">
+                  <a href="#"><i class="icon-chat"></i> 33</a>
+                  <a href="#"><i class="icon-clock2"></i> 2 hours ago</a>
+               </div>
+            </div>
+         </div>
+         
+      </div>
+      <div class="row">
+         <div class="col-md-4 col-md-offset-4 text-center wow fadeInUp" data-wow-duration="1s"
+            data-wow-delay="2s">
+            <a href="#" class="btn btn-primary btn-lg">View All Post</a>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock  %}

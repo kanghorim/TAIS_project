@@ -1,0 +1,34 @@
+#eventdiv{
+    text-align: center; 
+    height: 230px;
+}
+#eventdiv1{
+    width: 405px; 
+    height:200px; 
+    border:1px solid black; 
+    display: inline-block; 
+    margin-right:5px;
+    background-image: url(../images/full_2.jpg);
+}
+#eventdiv2{
+    height: 25px;
+}
+.eventdiv3{
+    opacity:0
+}
+#eventdiv4{
+    width: 450px;
+    height:200px;
+    border:1px solid black;
+    display: inline-block;
+}
+#eventdiv5{
+    border-bottom: 1px solid black;
+    height: 25px;
+}
+#eventdiv6{
+    border-bottom: 1px solid black;
+}
+.container a {
+    color: inherit;
+}

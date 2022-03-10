@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<script>
+  function searchBtn(){
+    if ($("#searchword").val().length <= 1){
+      alert('검색어를 입력하셔야 검색이 가능합니다.(2자 이상)') ;
+      return false ;
+    }else{
+      $("#search").submit()
+    }
+  }
+</script>
+<div>
+<section>
+  <h1>자유게시판</h1>
+  <div class="wrapper">
+    <form action="{% url 'comm:community' %}" id="search" method="post">
+      {% csrf_token %}
+      {% if category %}
+      <select name="category" id="category">
+        <option value="all" {% if category in 'all' %}selected{% endif %}>전체</option>
+        <option value="title" {% if category in 'titlel' %}selected{% endif %}>제목</option>
+        <option value="content" {% if category in 'content' %}selected{% endif %}>내용</option>
+      </select>
+      {% else %}
+      <select name="category" id="category">
+        <option value="all">전체</option>
+        <option value="title">제목</option>
+        <option value="content">내용</option>
+      </select>
+      {% endif %}
+
+      <div class="title">
+        {% if searchword %}
+        <input type="text" id="searchword" name="searchword" size="16" value="{{searchword}}">
+        {% else %}
+        <input type="text" id="searchword" name="searchword" size="16">
+        {% endif %}
+      </div>
+      <button type="button" onclick="searchBtn()"><i class="fas fa-search"></i></button>
+    </form>
+  </div>
+
+
+  <table>
+    <colgroup>
+      <col width="15%">
+      <col width="40%">
+      <col width="15%">
+      <col width="15%">
+      <col width="15%">
+    </colgroup>
+    <!-- 제목부분 -->
+    <tr>
+      <th>No.</th>
+      <th>제목</th>
+      <th>작성일</th>
+      <th>작성자</th>
+      <th>조회수</th>
+    </tr>
+    <!-- 내용부분 -->
+    <tbody id="tbody">
+      {% if community %}
+          {% for comm in community %}
+            <tr>
+              <td><span class='table-notice'>{{comm.board_no}}</span></td>
+              <td class='table-title' id='pInput'>
+                <a href="{% url 'comm:community_view' comm.board_no %}">
+                </a>
+              </td>
+              <td>{{comm.b_date|date:'Y-m-d H:i'}}</td>
+              <td>{{comm.user_id}}</td>
+              <td>{{comm.b_count}}</td>
+            </tr>
+          {% endfor %}
+        {% else %}
+          <tr>
+            <td colspan='5'>현재 데이터가 없습니다.</td>
+          </tr>
+        {% endif %}
+    </table>
+
+  <ul class="page-num">
+    {% if community.has_previous %}
+        <a href = "?nowpage=1"><li class="first"></li></a>
+        <a href = "?nowpage={{ community.previous_page_number }}"><li class="prev"></li></a>
+      {% else %}
+        <li class="first"></li>
+        <li class="prev"></li>
+      {% endif %}
+      
+    {% for page in community.paginator.page_range %}
+      {% if page != nowpage %}
+        <a href = "?nowpage={{page}}"><li class="num off"><div>{{page}}</div></li></a>
+      {% else %}
+        <li class="num on"><div>{{page}}</div></li>
+      {% endif %}
+    {% endfor %}
+    {% if community.has_next %}
+      <a href = "?nowpage={{ community.next_page_number }}"><li class="next"></li></a>
+      <a href = "?nowpage={{ community.paginator.num_pages }}"><li class="last"></li></a>
+    {% else %}
+      <li class="next"></li>
+      <li class="last"></li>
+    {% endif %}
+  </ul>
+
+  <div class="community_write">
+    <a href="{% url 'comm:community_write' %}" class="community_button">
+      쓰기
+    </a>
+  </div>
+</section>
+</div>
+{% endblock  %}

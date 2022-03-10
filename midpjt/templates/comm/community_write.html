@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/write.css' %}">
+<section>
+  <h1>자유게시판</h1>
+  <hr>
+
+  <form action="write.do" name="write" method="post">
+    <table>
+      <colgroup>
+        <col width="15%">
+        <col width="85%">
+      </colgroup>
+      <tr>
+        <th>작성자</th>
+        <td>
+          <input type="text" name="bName">
+        </td>
+      </tr>
+      <tr>
+        <th>제목</th>
+        <td>
+          <input type="text" name="bTitle">
+        </td>
+      </tr>
+      <tr>
+        <th>내용</th>
+        <td>
+          <textarea name="bContent" cols="50" rows="10"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <th>이미지 표시</th>
+        <td>
+          <input type="file" name="file" id="file">
+        </td>
+      </tr>
+    </table>
+    <hr>
+    <div class="button-wrapper">
+      <ul class="button-ul">
+        <li>
+          <button type="submit" class="write">작성완료</button>
+        </li>
+        <li>
+          <button type="button" class="cancel" onclick="javascript:location.href='../community/community.html'">취소</button>
+        </li>
+      </ul>
+    </div>
+  </form>
+</section>
+{% endblock %}

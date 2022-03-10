@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+      document.getElementById("mySidenav").style.marginTop = "100px";
+    }
+    
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+    function divopen(){
+        document.getElementById("mySidenav").style.width = "250px";
+      document.getElementById("mySidenav").style.marginTop = "100px";
+    }
+    
+</script>
+<script src="js/modernizr-2.6.2.min.js"></script>
+<style>
+    .sidenav {
+    
+      height: 50%;
+      width: 0;
+      position: fixed;
+      z-index: 100;
+      top: 0;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      transition: 0.5s;
+      margin-top: 60px;
+     
+    }
+    
+    .sidenav a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #818181;
+      display: block;
+      transition: 0.3s;
+    }
+    
+    .sidenav a:hover {
+      color: #f1f1f1;
+    }
+    
+    .sidenav .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 100px;
+    }
+    
+    @media screen and (max-height: 450px) {
+      .sidenav {padding-top: 15px;}
+      .sidenav a {font-size: 18px;}
+    }
+
+    .chart_box_left{
+        border: 1px solid black ; 
+        height: 450px;
+        width: 45%;
+        float: left;
+        margin-left: 20px; margin-top: 20px;
+    }
+
+    .chart_box_right{
+        border: 1px solid black ;
+        height: 450px; width: 45%;
+        float: right;
+        margin-right: 20px; margin-top: 20px;
+    }
+    </style>
+
+    <span style="font-size:30px;cursor:pointer " onclick="openNav()">&#9776; open</span> 
+	<div class="fh5co-blog-style-1">
+       
+		<div class="container" style="margin-top: -50px ; ">
+			<div class="text-center">
+				<h2 class="fh5co-heading wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">차트
+				</h2>
+				
+			</div>
+            {% comment %} 옆 사이드바 차트 {% endcomment %}
+			<div id="mySidenav" class="sidenav"> 
+				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+				<a href="#">차트1</a>
+				<a href="#">차트2</a>
+				<a href="#">차트3</a>
+				<a href="#">차트4</a>
+			</div>
+      <div style="border: 1px solid black; width: 120%; height: 1200px; margin-bottom: 20px; margin-top: -10px; margin-left:-120px; background-color:gray;">
+          
+        <div class = "chart_box_left" >
+            차트1
+        </div>
+        <div class = "chart_box_right" >
+            차트2
+        </div>
+        <div class = "chart_box_left">
+            차트3
+        </div>
+        <div class = "chart_box_right" >
+            차트4
+        </div>
+              
+      </div>
+
+		</div>
+  </div>
+{% endblock  %}

@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/news.css' %}">
+<div class="fh5co-heading wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">			
+	<div style="text-align:center;">
+		<h2>뉴스</h2>
+	</div>
+</div>
+<section id="news_div">
+	<div id="news_div0">
+		<div id="news_subdiv1">
+			<div id="news_sdivimg">
+				<img style="width: 400px; height: 195px; object-fit: cover;" src="{% static 'images/newsimg1.png' %}" alt="뉴스1">
+			</div>
+		</div>
+		<div id="news_subdiv2">	
+			<div class = "news_title">
+				<span id="ntitle">
+					<img src = "//tr-image.game.onstove.com/web/Common/Icons/ico_event_ing.gif" width = '41' height = '14' alt = "진행중">
+				</span> 
+				<a href="{% url 'fboard:news_page' %}" style="text-decoration: none;">자동차안전단속, 야간운전 적 ‘등화장치위반’ 53.2%</a>
+			</div>
+			<div class = "news_days">
+				<span id="ndays">
+					<img src = "{% static 'images/days_icon2.gif' %}" width = '4' height = '5' alt = ">">
+				</span> 
+				등록일자 : 2022-02-24 13:15
+			</div>
+			<div class = "news_content"><a href="{% url 'fboard:news_page' %}">
+				<h3>한국교통안전공단 2021년 13,679대 적발</h3>
+				<br>
+				출처 : 교통뉴스(http://www.cartvnews.com)</a>
+			</div>
+		</div>
+	</div>
+	<div id="news_div0">
+		<div id="news_subdiv1">
+			<div id="news_sdivimg">
+				<img style="width: 400px; height: 195px; object-fit: cover;" src="{% static 'images/newsimg2.png' %}" alt="뉴스1">
+			</div>
+		</div>
+		<div id="news_subdiv2">	
+			<div class = "news_title">
+				<span id="ntitle">
+					<img src = "//tr-image.game.onstove.com/web/Common/Icons/ico_event_ing.gif" width = '41' height = '14' alt = "진행중">
+				</span> 
+				<a href="{% url 'fboard:news_page' %}">행안부, 교통사고 잦은 곳 개선하니 사망자 및 교통사고 줄어</a>
+			</div>
+			<div class = "news_days">
+				<span id="ndays">
+					<img src = "{% static 'images/days_icon2.gif' %}" width = '4' height = '5' alt = ">">
+				</span> 
+				등록일자 : 2022-02-22 13:45 
+			</div>
+			<div class = "news_content"><a href="{% url 'fboard:news_page' %}">
+				<h3>지난해까지 11,803개소 개선</h3>
+				<br>
+				출처 : 교통뉴스(http://www.cartvnews.com)</a>
+			</div>
+		</div>
+	</div>
+	<div id="news_div0">
+		<div id="news_subdiv1">
+			<div id="news_sdivimg">
+				<img style="width: 400px; height: 195px; object-fit: cover;" src="{% static 'images/newsimg3.png' %}" alt="뉴스1">
+			</div>
+		</div>
+		<div id="news_subdiv2">	
+			<div class = "news_title">
+				<span id="ntitle">
+					<img src = "//tr-image.game.onstove.com/web/Common/Icons/ico_event_ing.gif" width = '41' height = '14' alt = "진행중">
+				</span> 
+				<a href="{% url 'fboard:news_page' %}">양평군 ‘23년공공하수처리시설’ 신·증설사업 국비신청</a>
+			</div>
+			<div class = "news_days">
+				<span id="ndays">
+					<img src = "{% static 'images/days_icon2.gif' %}" width = '4' height = '5' alt = ">">
+				</span> 
+				등록일자 : 2022-03 
+			</div>
+			<div class = "news_content"><a href="{% url 'fboard:news_page' %}">
+				<h3>전액확보 2030년인구증가 약 16만명 처리가능</h3>
+				<br>
+				출처 : 교통뉴스(http://www.cartvnews.com)</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock  %}

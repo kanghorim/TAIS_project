@@ -1,0 +1,34 @@
+{% load static %}
+<!--START header-->
+<div id="fh5co-page" class="community_logo">
+    <nav class="fh5co-community-style-1" role="navigation" data-offcanvass-position="fh5co-offcanvass-left" style="background-image: url({% static 'images/full_2.jpg' %})">
+        <div class="container">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 fh5co-logo">
+                <a href="#" class="js-fh5co-mobile-toggle fh5co-nav-toggle"><i>아이콘</i></a>
+                <a href="/">TAIS</a>
+            </div>
+            <div class="col-lg-6 col-md-5 col-sm-5 text-center fh5co-link-wrap">
+                <ul data-offcanvass="yes" class="main1">
+                    <li class="active"><a href="{% url 'tai:tai' %}">차트</a></li>
+                    <li class="active"><a href="{% url 'fboard:notification' %}">새소식</a>
+                        <ul class = "main2">
+                            <li><a href="{% url 'fboard:notification' %}">공지사항</a></li>
+                            <li><a href="{% url 'fboard:news' %}">뉴스</a></li>
+                        </ul>
+                    </li>
+                    <li class="active"><a href="{% url 'comm:community' %}">커뮤니티</a>
+                    </li>
+                    <li class="active"><a href="{% url 'event:event' %}">이벤트</a></li>
+                </ul>
+            </div> 
+            <div class="col-lg-3 col-md-4 col-sm-4 text-right fh5co-link-wrap">
+                <ul class="fh5co-special" data-offcanvass="yes">
+                    <li><a href="{% url 'member:addaccount' %}">회원가입</a></li>
+                    <li><a href="{% url 'member:login' %}" class="call-to-action">로그인</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<div id="fixed_div"></div>
+<!--END header-->
